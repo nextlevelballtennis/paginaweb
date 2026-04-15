@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Level Ball — Tennis Consulting & Performance</title>
+  <meta name="description" content="Clarity, strategy and progress for competitive tennis players. Take your game to the next level with expert guidance and a proven approach.">
+  <meta name="keywords" content="tennis consulting, tennis improvement, tennis strategy, competitive tennis, next level ball">
+  <meta property="og:title" content="Next Level Ball — Your Next Level Starts Here">
+  <meta property="og:description" content="Clarity, strategy and progress for competitive tennis players.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%237c3aed'/><circle cx='32' cy='28' r='10' fill='%23c4f72a' opacity='0.9'/><text x='32' y='56' text-anchor='middle' fill='%23f1f5f9' font-family='sans-serif' font-size='7' font-weight='700'>NLB</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dark: #07070f;
+      --darker: #040408;
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --accent: #c4f72a;
+      --accent-dim: #9cc41e;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #1e1e2e;
+      --gray-800: #14141f;
+      --gray-900: #0c0c16;
+    }
+
+    html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--purple) var(--dark); }
+    body { background: var(--dark); color: var(--gray-100); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+    ::selection { background: var(--purple); color: white; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 1024px) { .container { padding: 0 32px; } }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #f1f5f9 0%, #c4f72a 50%, #7c3aed 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-text-accent {
+      background: linear-gradient(135deg, #c4f72a 0%, #a78bfa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-toggle.open .about-chevron { transform: rotate(180deg); }
+    .about-content.open { max-height: 500px !important; opacity: 1 !important; }
+
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .court-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.3) 20%, rgba(196,247,42,0.2) 50%, rgba(124,58,237,0.3) 80%, transparent 100%);
+    }
+
+    .btn-premium {
+      transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 12px;
+    }
+    .btn-premium:hover { transform: translateY(-2px); }
+    .btn-premium:active { transform: translateY(0); }
+
+    .tennis-glow { box-shadow: 0 0 60px rgba(196,247,42,0.15), 0 0 120px rgba(196,247,42,0.05); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes glow-pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    @keyframes scroll-dot { 0%,100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(8px); opacity: 1; } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fade-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fade-right { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes scale-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes draw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+    @keyframes slide-nav { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+    @keyframes hero-line { from { stroke-dashoffset: 2000; } to { stroke-dashoffset: 0; } }
+    @keyframes ball-appear { from { opacity: 0; r: 0; } to { opacity: 0.4; r: 8; } }
+
+    .anim-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .anim-hidden.visible { opacity: 1; transform: translateY(0); }
+    .anim-hidden-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .anim-hidden-left.visible { opacity: 1; transform: translateX(0); }
+    .anim-hidden-right { opacity: 0; transform: translateX(30px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .anim-hidden-right.visible { opacity: 1; transform: translateX(0); }
+    .anim-hidden-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .anim-hidden-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-outer, .cursor-inner { position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%; }
+    .cursor-outer {
+      width: 40px; height: 40px; border: 1px solid rgba(196,247,42,0.3); background: rgba(196,247,42,0.05);
+      transition: transform 0.15s ease-out;
+      mix-blend-mode: screen;
+    }
+    .cursor-inner { width: 6px; height: 6px; background: var(--accent); transition: transform 0.08s ease-out; }
+    @media (pointer: coarse) { .cursor-outer, .cursor-inner { display: none; } }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      transition: all 0.5s ease;
+      animation: slide-nav 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .navbar { background: #ffffff; }
+    .navbar.scrolled { background: #ffffff; backdrop-filter: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    @media (min-width: 1024px) { .navbar-inner { height: 68px; } }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-img { height: 36px; width: auto; object-fit: contain; }
+    .nav-logo-text { font-size: 17px; font-weight: 700; color: #07070f; letter-spacing: -0.04em; text-transform: uppercase; }
+    .nav-logo-text em { font-style: normal; color: var(--purple); }
+
+    .nav-links { display: none; align-items: center; gap: 28px; }
+    @media (min-width: 1024px) { .nav-links { display: flex; } }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #475569; text-decoration: none; position: relative; transition: color 0.3s; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-links a:hover { color: #07070f; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--purple); transition: width 0.3s; }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Clipped corner button style */
+    .btn-clipped {
+      clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+      transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .btn-clipped:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-clipped:active { transform: translateY(0); }
+
+    .nav-cta {
+      display: none; margin-left: 16px; padding: 9px 18px; background: var(--purple); color: white;
+      font-size: 12px;
+    }
+    @media (min-width: 1024px) { .nav-cta { display: inline-flex; } }
+
+    .mobile-toggle { display: flex; padding: 8px; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    @media (min-width: 1024px) { .mobile-toggle { display: none; } }
+    .mobile-toggle span { display: block; width: 24px; height: 1.5px; background: #07070f; transition: all 0.3s; }
+    .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 40; background: rgba(7,7,15,0.98); backdrop-filter: blur(30px);
+      padding: 100px 24px 40px; display: none; flex-direction: column; gap: 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 28px; font-weight: 600; color: white; text-decoration: none; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .mob-cta {
+      margin-top: 16px; padding: 14px 24px; background: var(--purple); color: white;
+      font-weight: 600; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 12px; width: fit-content;
+      clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px; display: flex; flex-direction: column;
+      justify-content: flex-start; overflow: hidden; background: #000;
+    }
+
+    /* Video background */
+    .hero-video-wrap { position: absolute; inset: 0; z-index: 1; }
+    .hero-video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* Very subtle bottom gradient for readability over video */
+    .hero-video-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, rgba(7,7,15,0.7) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Hero content - left aligned, positioned toward top */
+    .hero-content {
+      position: relative; z-index: 10; max-width: 1280px; width: 100%;
+      margin: 0 auto; padding: 0 32px;
+      padding-top: clamp(120px, 18vh, 200px);
+      text-align: left;
+    }
+    @media (max-width: 767px) { .hero-content { padding: 100px 20px 0; } }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+      border-radius: 9999px; border: 1px solid rgba(196,247,42,0.25); background: rgba(196,247,42,0.06);
+      margin-bottom: 20px; animation: fade-up 0.6s ease 0.2s both;
+    }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: glow-pulse 3s ease-in-out infinite; }
+    .hero-badge-text { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.18em; }
+
+    .hero h1 {
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.0;
+      margin-bottom: 20px; animation: fade-up 0.8s ease 0.4s both;
+      font-size: clamp(42px, 5.5vw, 64px); text-transform: uppercase;
+      max-width: 700px; color: white;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .hero h1 .accent-word { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 17px); color: rgba(255,255,255,0.7);
+      max-width: 480px; line-height: 1.65; animation: fade-up 0.6s ease 0.7s both;
+      margin-bottom: 28px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 2px 16px rgba(0,0,0,0.25);
+    }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; animation: fade-up 0.6s ease 1s both; }
+
+    .hero-cta-primary {
+      padding: 14px 28px; background: var(--accent); color: var(--dark); font-weight: 700;
+      font-size: 13px; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .hero-cta-primary::after {
+      content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.2);
+      transform: translateY(100%); transition: transform 0.3s;
+    }
+    .hero-cta-primary:hover::after { transform: translateY(0); }
+    .hero-cta-primary svg, .hero-cta-primary span { position: relative; z-index: 1; }
+
+    .hero-cta-secondary {
+      padding: 14px 28px; background: rgba(255,255,255,0.08); color: white;
+      font-weight: 600; font-size: 13px; backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.12); text-transform: uppercase; letter-spacing: 0.03em;
+      clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+    }
+    .hero-cta-secondary:hover { background: rgba(255,255,255,0.14); }
+
+    /* Liquid glass consultation card */
+    .hero-consult-card {
+      position: absolute; bottom: 40px; left: 32px; z-index: 20;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 32px rgba(0,0,0,0.3);
+      max-width: 340px;
+      animation: fade-up 0.7s ease 1.3s both;
+      overflow: hidden;
+    }
+    .hero-consult-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(255,255,255,0.02) 100%);
+      pointer-events: none;
+    }
+    @media (max-width: 767px) { .hero-consult-card { position: relative; bottom: auto; left: auto; margin: 32px 20px 0; max-width: 100%; } }
+
+    .consult-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 6px; position: relative; }
+    .consult-desc { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 14px; line-height: 1.5; position: relative; }
+    .consult-btn {
+      padding: 10px 20px; background: white; color: var(--dark); font-size: 12px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      position: relative;
+    }
+    .consult-btn svg { width: 14px; height: 14px; }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 10;
+      animation: fade-up 0.5s ease 2.5s both;
+    }
+    @media (max-width: 767px) { .scroll-indicator { display: none; } }
+    .scroll-mouse { width: 20px; height: 32px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; }
+    .scroll-mouse-dot { width: 4px; height: 8px; background: rgba(196,247,42,0.6); border-radius: 9999px; animation: scroll-dot 2s infinite; }
+
+    /* ===== SECTIONS SHARED ===== */
+    section { position: relative; }
+    .section-pad { padding: 112px 0; }
+    @media (min-width: 1024px) { .section-pad { padding: 144px 0; } }
+    .section-label { color: var(--accent); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 16px; }
+    .section-title { font-size: clamp(32px, 5vw, 60px); font-weight: 900; color: white; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+    .section-desc { font-size: 18px; color: var(--gray-400); line-height: 1.7; }
+
+    .court-surface {
+      background: linear-gradient(180deg, rgba(7,7,15,1) 0%, rgba(14,14,28,1) 50%, rgba(7,7,15,1) 100%);
+    }
+
+    /* ===== WHAT WE DO ===== */
+    .wwd-header { max-width: 720px; margin-bottom: 80px; }
+    .wwd-grid { display: grid; gap: 24px; }
+    @media (min-width: 768px) { .wwd-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .wwd-card {
+      border-radius: 16px; padding: 32px; position: relative; overflow: hidden; transition: all 0.5s;
+    }
+    .wwd-card:hover { border-color: rgba(124,58,237,0.2) !important; }
+    .wwd-card-glow {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(124,58,237,0.05), transparent);
+      opacity: 0; transition: opacity 0.5s;
+    }
+    .wwd-card:hover .wwd-card-glow { opacity: 1; }
+    .wwd-card-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.2); display: flex; align-items: center;
+      justify-content: center; color: var(--purple-light); margin-bottom: 20px;
+    }
+    .wwd-card h3 { font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .wwd-card p { font-size: 15px; color: var(--gray-400); line-height: 1.7; }
+
+    /* ===== BENEFITS ===== */
+    .benefits-header { text-align: center; max-width: 720px; margin: 0 auto 80px; }
+    .benefits-grid { display: grid; gap: 24px; }
+    @media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .benefit-card {
+      position: relative; padding: 32px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.01);
+      transition: all 0.5s;
+    }
+    .benefit-card:hover { border-color: rgba(124,58,237,0.2); background: rgba(255,255,255,0.03); }
+    .benefit-num {
+      position: absolute; top: 24px; right: 24px; font-size: 48px; font-weight: 900;
+      color: rgba(124,58,237,0.1); transition: color 0.5s; line-height: 1;
+    }
+    .benefit-card:hover .benefit-num { color: rgba(124,58,237,0.2); }
+    .benefit-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px; padding-right: 48px; }
+    .benefit-card p { font-size: 15px; color: var(--gray-400); line-height: 1.7; }
+
+    /* ===== VISUAL EXPERIENCE ===== */
+    .visual-bg { position: absolute; inset: 0; pointer-events: none; }
+    .visual-bg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .visual-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2s ease-out; }
+    .visual-line.drawn { stroke-dashoffset: 0; }
+    .visual-arc { stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2.5s ease-out 0.5s; }
+    .visual-arc.drawn { stroke-dashoffset: 0; }
+    .visual-ball { opacity: 0; transition: opacity 0.5s ease 2.8s; }
+    .visual-ball.drawn { opacity: 0.4; }
+
+    .visual-statements { text-align: center; margin-bottom: 96px; }
+    .visual-statement { font-size: clamp(28px, 5vw, 60px); font-weight: 900; color: rgba(255,255,255,0.9); line-height: 1.2; }
+    .visual-sub { font-size: 20px; color: var(--gray-400); margin-top: 32px; max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .visual-sub strong { color: var(--accent); font-weight: 500; }
+
+    /* Showcase video card */
+    .showcase-video-wrap {
+      display: flex; align-items: center; gap: 40px; margin-bottom: 80px;
+      flex-direction: column;
+    }
+    @media (min-width: 768px) { .showcase-video-wrap { flex-direction: row; } }
+
+    .showcase-video-card {
+      position: relative; flex-shrink: 0;
+      width: 100%; max-width: 420px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 80px rgba(124,58,237,0.08);
+      background: #000;
+    }
+    @media (min-width: 768px) { .showcase-video-card { width: 420px; } }
+
+    .showcase-video-card::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%);
+    }
+    .showcase-video-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; z-index: 2; pointer-events: none;
+      background: linear-gradient(to top, rgba(7,7,15,0.5) 0%, transparent 100%);
+    }
+
+    .showcase-video {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+    }
+
+    .showcase-video-badge {
+      position: absolute; bottom: 12px; left: 12px; z-index: 3;
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 8px;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .showcase-video-badge span { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+    .showcase-video-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: glow-pulse 2s ease-in-out infinite; }
+
+    .showcase-text { flex: 1; }
+    .showcase-text h3 {
+      font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: white;
+      line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .showcase-text h3 em { font-style: normal; color: var(--accent); }
+    .showcase-text p { font-size: 15px; color: var(--gray-400); line-height: 1.7; margin-bottom: 20px; }
+    .showcase-text .btn-clipped { font-size: 12px; padding: 11px 22px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-card {
+      border-radius: 16px; padding: 24px; text-align: center; transition: all 0.5s;
+    }
+    .stat-card:hover { border-color: rgba(196,247,42,0.1) !important; }
+    .stat-value { font-size: clamp(28px, 3.5vw, 40px); font-weight: 900; color: var(--accent); margin-bottom: 8px; }
+    .stat-label { font-size: 12px; color: var(--gray-400); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .net-separator {
+      position: absolute; bottom: 0; width: 100%; height: 40px; opacity: 0.3;
+      background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(124,58,237,0.15) 8px, rgba(124,58,237,0.15) 9px);
+    }
+
+    /* ===== WHY NLB ===== */
+    .why-grid { display: grid; gap: 64px; }
+    @media (min-width: 1024px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+    .why-left { }
+    @media (min-width: 1024px) { .why-left { position: sticky; top: 128px; align-self: start; } }
+    .why-left .section-desc { margin-bottom: 32px; }
+    .why-left .section-desc em { font-style: normal; color: white; font-weight: 500; }
+    .why-cta {
+      padding: 13px 24px; background: var(--purple); color: white; font-weight: 600;
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em;
+      clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+    }
+    .why-cta:hover { background: rgba(124,58,237,0.9); }
+
+    .why-cards { display: flex; flex-direction: column; gap: 20px; }
+    .why-card {
+      border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: all 0.5s;
+    }
+    .why-card:hover { border-color: rgba(124,58,237,0.2) !important; }
+    .why-card-bar {
+      position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    }
+    .why-card-bar-fill {
+      width: 100%; height: 0; border-radius: 9999px; transition: height 0.7s;
+    }
+    .why-card:hover .why-card-bar-fill { height: 100%; }
+    .why-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px; padding-left: 16px; }
+    .why-card p { font-size: 15px; color: var(--gray-400); line-height: 1.7; padding-left: 16px; }
+
+    /* ===== SOCIAL PROOF ===== */
+    .sp-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+    .reel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 64px; }
+    @media (min-width: 768px) { .reel-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .reel-card {
+      position: relative; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden;
+      cursor: pointer; text-decoration: none; display: block;
+    }
+    @media (min-width: 640px) { .reel-card { aspect-ratio: 4/5; } }
+    .reel-bg { position: absolute; inset: 0; }
+    .reel-court { position: absolute; inset: 0; opacity: 0.1; }
+    .reel-overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .reel-card:hover .reel-overlay { opacity: 1; }
+    .reel-play {
+      width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;
+    }
+    .reel-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+    .reel-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(196,247,42,0.8); margin-bottom: 4px; }
+    .reel-title { font-size: 14px; font-weight: 700; color: white; }
+    .reel-hover-bg {
+      position: absolute; inset: 0; background: rgba(124,58,237,0.1); opacity: 0; transition: opacity 0.3s;
+    }
+    .reel-card:hover .reel-hover-bg { opacity: 1; }
+
+    /* Video Modal */
+    .video-modal-overlay {
+      position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center;
+      padding: 24px; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .video-modal-overlay.active { display: flex; opacity: 1; }
+    .video-modal {
+      background: var(--gray-800); border-radius: 16px; overflow: hidden;
+      max-width: 960px; width: 100%; max-height: 90vh;
+      border: 1px solid rgba(124,58,237,0.15);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column;
+    }
+    @media (min-width: 768px) {
+      .video-modal { flex-direction: row; max-height: 80vh; }
+    }
+    .video-modal-player {
+      flex: 1.2; background: black; display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
+    }
+    .video-modal-player video {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+    }
+    .video-modal-info {
+      flex: 1; padding: 28px 24px; display: flex; flex-direction: column; justify-content: center;
+      overflow-y: auto; max-height: 40vh;
+    }
+    @media (min-width: 768px) {
+      .video-modal-info { max-height: none; }
+    }
+    .video-modal-tag {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .video-modal-title {
+      font-size: 22px; font-weight: 800; color: white; margin-bottom: 16px; line-height: 1.3;
+    }
+    .video-modal-desc {
+      font-size: 15px; color: var(--gray-300); line-height: 1.75; font-style: italic;
+    }
+    .video-modal-close {
+      position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+      border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+      color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; transition: background 0.2s; z-index: 10;
+    }
+    .video-modal-close:hover { background: rgba(255,255,255,0.15); }
+
+    .community-row { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    @media (min-width: 640px) { .community-row { flex-direction: row; justify-content: center; gap: 48px; } }
+    .community-stat { display: flex; align-items: center; gap: 12px; }
+    .community-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(196,247,42,0.4); }
+    .community-label { font-size: 14px; font-weight: 500; color: var(--gray-300); letter-spacing: 0.03em; }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta { overflow: hidden; padding: 128px 0; }
+    @media (min-width: 1024px) { .final-cta { padding: 176px 0; } }
+    .final-bg { position: absolute; inset: 0; }
+    .final-glow-1 {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 600px; background: rgba(124,58,237,0.1); border-radius: 50%; filter: blur(150px);
+    }
+    .final-glow-2 {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 300px; height: 300px; background: rgba(196,247,42,0.05); border-radius: 50%; filter: blur(80px);
+    }
+    .final-court { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.03; }
+    .final-content { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; text-align: center; }
+    .final-content .section-title { font-size: clamp(32px, 6vw, 72px); line-height: 1.05; }
+    .final-content .section-desc { max-width: 640px; margin: 0 auto 40px; font-size: clamp(16px, 2vw, 20px); }
+    .final-btn {
+      padding: 18px 36px; background: var(--accent); color: var(--dark); font-weight: 700;
+      font-size: 15px; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.03em;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .final-btn::after {
+      content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.2);
+      transform: translateY(100%); transition: transform 0.3s;
+    }
+    .final-btn:hover::after { transform: translateY(0); }
+    .final-btn svg, .final-btn span { position: relative; z-index: 1; }
+    .final-trust { margin-top: 32px; font-size: 14px; color: var(--gray-500); }
+
+    /* ===== FOOTER ===== */
+    .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 48px 0; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; } }
+    .footer-logo { display: flex; align-items: center; gap: 12px; }
+    .footer-logo-dot { width: 24px; height: 24px; border-radius: 50%; background: rgba(196,247,42,0.8); }
+    .footer-logo-text { font-size: 16px; font-weight: 700; color: white; letter-spacing: -0.01em; }
+    .footer-logo-text em { font-style: normal; color: var(--accent); }
+    .footer-tagline { font-size: 14px; color: var(--gray-500); }
+    .footer-social a {
+      display: flex; padding: 10px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+      color: var(--gray-400); transition: all 0.3s; text-decoration: none;
+    }
+    .footer-social a:hover { border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.1); color: white; }
+    .footer-bottom { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .footer-bottom p { font-size: 12px; color: var(--gray-600); }
+
+    /* ===== SUCCEEDING PLAYERS ===== */
+    .sp-reviews-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+    .reviews-grid { display: grid; gap: 24px; margin-bottom: 48px; }
+    @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .review-card {
+      border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: all 0.5s;
+    }
+    .review-card:hover { border-color: rgba(124,58,237,0.2) !important; }
+    .review-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .review-avatar {
+      width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--accent));
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: white; flex-shrink: 0;
+    }
+    .review-name { font-size: 15px; font-weight: 700; color: white; }
+    .review-role { font-size: 12px; color: var(--gray-400); }
+    .review-text { font-size: 14px; color: var(--gray-300); line-height: 1.7; font-style: italic; }
+    .review-media { margin-top: 16px; border-radius: 10px; overflow: hidden; max-height: 200px; }
+    .review-media img, .review-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Review form */
+    .review-form-wrap {
+      max-width: 600px; margin: 0 auto; border-radius: 16px; padding: 32px;
+    }
+    .review-form-title { font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; text-align: center; }
+    .review-form-desc { font-size: 14px; color: var(--gray-400); margin-bottom: 24px; text-align: center; }
+
+    .review-form { display: flex; flex-direction: column; gap: 16px; }
+    .review-form input, .review-form textarea {
+      width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; color: white; font-family: 'Inter', sans-serif; font-size: 14px;
+      transition: border-color 0.3s; outline: none; resize: vertical;
+    }
+    .review-form input::placeholder, .review-form textarea::placeholder { color: var(--gray-500); }
+    .review-form input:focus, .review-form textarea:focus { border-color: var(--purple); }
+    .review-form textarea { min-height: 100px; }
+
+    .review-form-row { display: flex; gap: 12px; }
+    @media (max-width: 640px) { .review-form-row { flex-direction: column; } }
+    .review-form-row input { flex: 1; }
+
+    .review-file-label {
+      display: flex; align-items: center; gap: 10px; padding: 14px 16px; cursor: pointer;
+      background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: 10px; color: var(--gray-400); font-size: 13px; transition: all 0.3s;
+    }
+    .review-file-label:hover { border-color: var(--purple); color: var(--gray-300); }
+    .review-file-label input { display: none; }
+
+    .review-submit {
+      padding: 14px 28px; background: var(--purple); color: white; font-weight: 700;
+      font-size: 14px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.03em;
+      clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+      transition: all 0.3s; align-self: center;
+    }
+    .review-submit:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .review-preview { display: none; margin-top: 8px; border-radius: 10px; overflow: hidden; max-height: 150px; }
+    .review-preview img, .review-preview video { max-width: 100%; max-height: 150px; object-fit: cover; border-radius: 10px; }
+
+    .review-success {
+      display: none; text-align: center; padding: 24px; color: var(--accent); font-weight: 600; font-size: 15px;
+    }
+
+    /* ===== SVG ICON HELPER ===== */
+    .icon-ig { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor-outer" id="cursorOuter"></div>
+<div class="cursor-inner" id="cursorInner"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Next Level Ball" class="nav-logo-img">
+        <div class="nav-logo-text">Next Level <em>Ball</em></div>
+      </a>
+      <div class="nav-links">
+        <a href="#what-we-do">What We Do</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#why-nlb">Why NLB</a>
+        <a href="#the-team">Team</a>
+        <a href="#social-proof">Community</a>
+        <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="nav-cta btn-clipped">
+          <svg class="icon-ig" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Contact Us
+        </a>
+        <a href="https://wa.me/12012646820" target="_blank" rel="noopener noreferrer" class="nav-cta btn-clipped" style="background:var(--accent);color:var(--dark)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#what-we-do" onclick="closeMobile()">What We Do</a>
+  <a href="#benefits" onclick="closeMobile()">Benefits</a>
+  <a href="#why-nlb" onclick="closeMobile()">Why NLB</a>
+  <a href="#the-team" onclick="closeMobile()">Team</a>
+  <a href="#social-proof" onclick="closeMobile()">Community</a>
+  <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="mob-cta">
+    <svg class="icon-ig" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    Follow on Instagram
+  </a>
+  <a href="https://wa.me/12012646820" target="_blank" rel="noopener noreferrer" class="mob-cta" style="background:var(--accent);color:var(--dark)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- Video Background -->
+  <div class="hero-video-wrap">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Left-aligned content, positioned toward top -->
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="hero-badge-text">Tennis Consulting</span>
+    </div>
+    <h1>
+      Swift and<br>
+      <span class="accent-word">Precise</span><br>
+      Progress
+    </h1>
+    <p class="hero-sub">
+      Clarity, strategy and real direction for competitive players.
+      Stop guessing — start improving with intent.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="btn-clipped hero-cta-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span>Get Started</span>
+      </a>
+      <a href="#what-we-do" class="btn-clipped hero-cta-secondary">
+        Discover More
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Liquid Glass Consultation Card - bottom left -->
+  <div class="hero-consult-card">
+    <div class="consult-title">Book a Consultation</div>
+    <div class="consult-desc">Get personalized guidance on your game. Talk to us about your <span style="color:var(--accent);font-weight:600">goals</span> and next <span style="color:var(--accent);font-weight:600">steps</span>.</div>
+    <a href="https://wa.me/12012646820?text=Hi%2C%20I%27m%20interested%20in%20a%20consultation%20with%20Next%20Level%20Ball" target="_blank" rel="noopener noreferrer" class="btn-clipped consult-btn">
+      <!-- Phone icon (lucide-style) -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Book a Call</span>
+    </a>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-mouse-dot"></div></div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO ===== -->
+<section id="what-we-do" class="section-pad">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="wwd-header">
+      <p class="section-label anim-hidden">What We Do</p>
+      <h2 class="section-title anim-hidden">Precision Over Noise</h2>
+      <p class="section-desc anim-hidden">Tennis improvement isn't about doing more — it's about doing what actually moves the needle. We cut through the noise and bring focus to your game.</p>
+    </div>
+    <div class="wwd-grid">
+      <div class="wwd-card glass-card anim-hidden">
+        <div class="wwd-card-glow"></div>
+        <div style="position:relative">
+          <div class="wwd-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <h3>Game Analysis</h3>
+          <p>We break down your game with precision. Identify what matters, eliminate what doesn't, and build a clear path forward.</p>
+        </div>
+      </div>
+      <div class="wwd-card glass-card anim-hidden">
+        <div class="wwd-card-glow"></div>
+        <div style="position:relative">
+          <div class="wwd-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Tactical Guidance</h3>
+          <p>Tactics can not failure. To think that the technical part can't failure is a mistake. One big misconception that encourages player to think that perfection is the name of the game. Nadal did not have a perfect ground strokes neither than Borg, Connors, McEnroe, Laver, Vilas, Bartoli, Pierce, Graf, etc.</p>
+        </div>
+      </div>
+      <div class="wwd-card glass-card anim-hidden">
+        <div class="wwd-card-glow"></div>
+        <div style="position:relative">
+          <div class="wwd-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Performance Tracking</h3>
+          <p>We don't want our player to be good at the town or academy they play at. We want them to succeed, and be great competitors everywhere. The fact is simple the court the balls the rules the are the same everywhere in the world. Therefore your tennis has to be great outside our doors.</p>
+        </div>
+      </div>
+      <div class="wwd-card glass-card anim-hidden">
+        <div class="wwd-card-glow"></div>
+        <div style="position:relative">
+          <div class="wwd-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Player Development</h3>
+          <p>From mindset to matchplay. We accompany your growth with structure, feedback and a commitment to progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section id="benefits" class="section-pad court-surface">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="benefits-header">
+      <p class="section-label anim-hidden">The Difference</p>
+      <h2 class="section-title anim-hidden">Progress Needs Direction</h2>
+      <p class="section-desc anim-hidden">The difference between grinding and growing is having someone who knows the way. Here's what changes when you work with intention.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card anim-hidden">
+        <span class="benefit-num">01</span>
+        <h3>Clarity in the Process</h3>
+        <p>Know exactly where you are, where you're going, and what to work on next. No guesswork.</p>
+      </div>
+      <div class="benefit-card anim-hidden">
+        <span class="benefit-num">02</span>
+        <h3>Focus on What Matters</h3>
+        <p>We separate the essential from the noise. Your energy goes where it creates real impact.</p>
+      </div>
+      <div class="benefit-card anim-hidden">
+        <span class="benefit-num">03</span>
+        <h3>Smarter Improvement</h3>
+        <p>Work with direction, not just effort. Every session, every adjustment — intentional.</p>
+      </div>
+      <div class="benefit-card anim-hidden">
+        <span class="benefit-num">04</span>
+        <h3>Growth Mindset</h3>
+        <p>Progress is a system, not a hope. We build the habits and perspective that create lasting change.</p>
+      </div>
+      <div class="benefit-card anim-hidden">
+        <span class="benefit-num">05</span>
+        <h3>Professional Criteria</h3>
+        <p>Decisions backed by experience and analysis. Not trends, not opinions — real criteria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISUAL EXPERIENCE ===== -->
+<section class="section-pad" id="visual-section" style="overflow:hidden">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="visual-bg">
+    <svg viewBox="0 0 1400 800">
+      <line class="visual-line" x1="0" y1="400" x2="1400" y2="400" stroke="#7c3aed" stroke-width="0.5" opacity="0.15"/>
+      <line class="visual-line" x1="700" y1="0" x2="700" y2="800" stroke="#7c3aed" stroke-width="0.5" opacity="0.1"/>
+      <path class="visual-arc" d="M 200 600 Q 500 100 700 300 Q 900 500 1200 150" fill="none" stroke="#c4f72a" stroke-width="1.5" opacity="0.2"/>
+      <circle class="visual-ball" cx="1200" cy="150" r="8" fill="#c4f72a"/>
+    </svg>
+  </div>
+  <div class="container" style="position:relative;z-index:10">
+    <div class="visual-statements">
+      <p class="section-label anim-hidden">The Shift</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3 class="visual-statement anim-hidden-left">From confusion to <span class="gradient-text">clarity.</span></h3>
+        <h3 class="visual-statement anim-hidden-left" style="transition-delay:0.2s">From effort to <span class="gradient-text">direction.</span></h3>
+        <h3 class="visual-statement anim-hidden-left" style="transition-delay:0.4s">From grinding to <span class="gradient-text">growing.</span></h3>
+      </div>
+      <p class="visual-sub anim-hidden" style="transition-delay:0.6s">
+        Every level demands a new standard.<br>
+        <strong>Progress is not random.</strong>
+      </p>
+    </div>
+
+    <!-- Showcase video accent -->
+    <div class="showcase-video-wrap anim-hidden">
+      <div class="showcase-video-card">
+        <video class="showcase-video" autoplay muted loop playsinline>
+          <source src="showcase-video.mp4" type="video/mp4">
+        </video>
+        <div class="showcase-video-badge">
+          <span class="showcase-video-badge-dot"></span>
+          <span>Next Level Ball</span>
+        </div>
+      </div>
+      <div class="showcase-text">
+        <h3>Improve with<br><em>real direction</em></h3>
+        <p>See what focused guidance looks like. Our approach is built on analysis, clarity and a commitment to your progress — not generic advice.</p>
+        <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="btn-clipped" style="background:var(--purple);color:white;">
+          Watch More Content
+        </a>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card glass-card anim-hidden-scale">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Focused Approach</div>
+      </div>
+      <div class="stat-card glass-card anim-hidden-scale" style="transition-delay:0.1s">
+        <div class="stat-value">1:1</div>
+        <div class="stat-label">Personalized Guidance</div>
+      </div>
+      <div class="stat-card glass-card anim-hidden-scale" style="transition-delay:0.2s">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Content & Support</div>
+      </div>
+      <div class="stat-card glass-card anim-hidden-scale" style="transition-delay:0.3s">
+        <div class="stat-value">&infin;</div>
+        <div class="stat-label">Growth Potential</div>
+      </div>
+    </div>
+  </div>
+  <div class="net-separator"></div>
+</section>
+
+<!-- ===== WHY NLB ===== -->
+<section id="why-nlb" class="section-pad court-surface">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <p class="section-label anim-hidden">Why Next Level Ball</p>
+        <h2 class="section-title anim-hidden">Built for Players<br><span class="gradient-text-accent">Who Want More</span></h2>
+        <p class="section-desc anim-hidden">There's no shortage of tennis content. But there's a real shortage of tennis <em>criteria</em>. That's the gap we fill — with clarity, structure and a standard you can trust.</p>
+        <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="btn-premium why-cta anim-hidden">
+          <svg class="icon-ig" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          See It in Action
+        </a>
+      </div>
+      <div class="why-cards">
+        <div class="why-card glass-card anim-hidden-right">
+          <div class="why-card-bar"><div class="why-card-bar-fill" style="background:var(--purple)"></div></div>
+          <h3>Real Professional Approach</h3>
+          <p>Not a generic social media page. A brand built on knowledge, analysis and a genuine commitment to your improvement.</p>
+        </div>
+        <div class="why-card glass-card anim-hidden-right" style="transition-delay:0.12s">
+          <div class="why-card-bar"><div class="why-card-bar-fill" style="background:var(--accent)"></div></div>
+          <h3>Focused on What Works</h3>
+          <p>We don't chase trends. Every piece of content and guidance is designed to create real, measurable impact on your game.</p>
+        </div>
+        <div class="why-card glass-card anim-hidden-right" style="transition-delay:0.24s">
+          <div class="why-card-bar"><div class="why-card-bar-fill" style="background:var(--purple)"></div></div>
+          <h3>Premium Standards</h3>
+          <p>From the way we communicate to the depth of our analysis — everything reflects a higher standard of quality and care.</p>
+        </div>
+        <div class="why-card glass-card anim-hidden-right" style="transition-delay:0.36s">
+          <div class="why-card-bar"><div class="why-card-bar-fill" style="background:var(--accent)"></div></div>
+          <h3>Clear Vision of Growth</h3>
+          <p>We see the full picture of your development. Not just today's problem — tomorrow's potential.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF ===== -->
+<section id="social-proof" class="section-pad">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="sp-header">
+      <p class="section-label anim-hidden">Content & Community</p>
+      <h2 class="section-title anim-hidden">Improve with <span style="color:var(--accent)">Intent</span></h2>
+      <p class="section-desc anim-hidden">Every piece of content is designed to give you an edge. Analysis, strategy, mindset — delivered with clarity and purpose.</p>
+    </div>
+    <div class="reel-grid">
+      <div class="reel-card anim-hidden-scale" onclick="openVideoModal(0)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Technique</div><div class="reel-title">Serve Analysis</div></div>
+      </div>
+      <div class="reel-card anim-hidden-scale" style="transition-delay:0.08s" onclick="openVideoModal(1)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(196,247,42,0.2), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Strategy</div><div class="reel-title">Match Strategy</div></div>
+      </div>
+      <div class="reel-card anim-hidden-scale" style="transition-delay:0.16s" onclick="openVideoModal(2)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Mindset</div><div class="reel-title">Mental Game</div></div>
+      </div>
+      <div class="reel-card anim-hidden-scale" style="transition-delay:0.24s" onclick="openVideoModal(3)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(196,247,42,0.2), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Movement</div><div class="reel-title">Footwork Drills</div></div>
+      </div>
+      <div class="reel-card anim-hidden-scale" style="transition-delay:0.32s" onclick="openVideoModal(4)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Improvement</div><div class="reel-title">Return of Serve</div></div>
+      </div>
+      <div class="reel-card anim-hidden-scale" style="transition-delay:0.4s" onclick="openVideoModal(5)">
+        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(196,247,42,0.2), var(--dark))"></div>
+        <div class="reel-hover-bg"></div>
+        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
+        <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
+        <div class="reel-content"><div class="reel-tag">Tactics</div><div class="reel-title">Court Awareness</div></div>
+      </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+      <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+      <div class="video-modal">
+        <div class="video-modal-player">
+          <video id="modalVideo" controls playsinline></video>
+        </div>
+        <div class="video-modal-info">
+          <div class="video-modal-tag" id="modalTag"></div>
+          <div class="video-modal-title" id="modalTitle"></div>
+          <div class="video-modal-desc" id="modalDesc"></div>
+        </div>
+      </div>
+    </div>
+    <div class="community-row anim-hidden">
+      <div class="community-stat"><div class="community-dot"></div><span class="community-label">Growing Community</span></div>
+      <div class="community-stat"><div class="community-dot"></div><span class="community-label">Weekly Content</span></div>
+      <div class="community-stat"><div class="community-dot"></div><span class="community-label">Real Progress</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUCCEEDING PLAYERS ===== -->
+<section id="succeeding-players" class="section-pad court-surface">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="sp-reviews-header">
+      <p class="section-label anim-hidden">Testimonials</p>
+      <h2 class="section-title anim-hidden">Succeeding <span style="color:var(--accent)">Players</span></h2>
+      <p class="section-desc anim-hidden">Real stories from players who made the shift. Read their experiences, see their progress.</p>
+    </div>
+
+    <!-- Reviews grid -->
+    <div class="reviews-grid" id="reviewsGrid">
+      <!-- Placeholder reviews -->
+      <div class="review-card glass-card anim-hidden">
+        <div class="review-card-header">
+          <div class="review-avatar">M</div>
+          <div><div class="review-name">Marco T.</div><div class="review-role">Competitive Player</div></div>
+        </div>
+        <p class="review-text">"The clarity I got from NLB changed my approach completely. I stopped wasting time on things that didn't matter and started seeing real results in tournaments."</p>
+      </div>
+      <div class="review-card glass-card anim-hidden">
+        <div class="review-card-header">
+          <div class="review-avatar">S</div>
+          <div><div class="review-name">Sofia R.</div><div class="review-role">Junior Player</div></div>
+        </div>
+        <p class="review-text">"My parents and I were lost trying to find the right academy. NLB gave us the criteria to make the best decision. It was a game changer."</p>
+      </div>
+      <div class="review-card glass-card anim-hidden">
+        <div class="review-card-header">
+          <div class="review-avatar">D</div>
+          <div><div class="review-name">Daniel K.</div><div class="review-role">Amateur Competitor</div></div>
+        </div>
+        <p class="review-text">"I thought I needed to fix my technique. Turns out I needed a better tactical plan. NLB helped me understand that and my results improved fast."</p>
+      </div>
+    </div>
+
+    <!-- Auth + Review form -->
+    <div class="review-form-wrap glass-card">
+      <!-- Login state -->
+      <div id="authSection">
+        <div class="review-form-title">Share Your Story</div>
+        <div class="review-form-desc">Sign in with Google to share your experience.</div>
+        <button onclick="googleSignIn()" class="review-submit" style="display:flex;align-items:center;justify-content:center;gap:10px;max-width:320px;margin:0 auto">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 0 1 9.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 0 0 0 24c0 3.77.87 7.35 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Sign in with Google
+        </button>
+      </div>
+
+      <!-- Review form (hidden until logged in) -->
+      <div id="reviewFormSection" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <img id="userAvatar" src="" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--purple)">
+            <span id="userName" style="color:white;font-weight:600;font-size:15px"></span>
+          </div>
+          <button onclick="googleSignOut()" style="background:none;border:1px solid rgba(255,255,255,0.15);color:var(--gray-400);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:13px">Sign out</button>
+        </div>
+        <div class="review-form-title">Share Your Story</div>
+        <div class="review-form-desc">Tell the community about your experience and progress.</div>
+        <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
+          <input type="text" id="revRole" placeholder="Player level (e.g. Competitive, Junior)">
+          <textarea id="revText" placeholder="Write your review..." required></textarea>
+          <label class="review-file-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span id="fileLabel">Upload a photo (optional)</span>
+            <input type="file" id="revFile" accept="image/*" onchange="previewFile(this)">
+          </label>
+          <div class="review-preview" id="revPreview"></div>
+          <button type="submit" class="review-submit" id="submitBtn">Submit Review</button>
+        </form>
+        <div class="review-success" id="reviewSuccess">Thank you! Your review has been submitted.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="final-bg">
+    <div class="final-glow-1"></div>
+    <div class="final-glow-2"></div>
+    <svg class="final-court" viewBox="0 0 1200 600">
+      <rect x="200" y="50" width="800" height="500" stroke="#7c3aed" stroke-width="2" fill="none" rx="4"/>
+      <line x1="600" y1="50" x2="600" y2="550" stroke="#7c3aed" stroke-width="1"/>
+      <line x1="200" y1="300" x2="1000" y2="300" stroke="#c4f72a" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="final-content container">
+    <p class="section-label anim-hidden">Ready to Level Up?</p>
+    <h2 class="section-title anim-hidden">The Next Level<br><span class="gradient-text">Is Waiting</span></h2>
+    <p class="section-desc anim-hidden">Join a growing community of players who chose clarity over confusion, strategy over guesswork, and progress over stagnation.</p>
+    <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" class="btn-premium final-btn tennis-glow anim-hidden">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <span>Start Your Next Level</span>
+    </a>
+    <p class="final-trust anim-hidden">Performance begins with better decisions.</p>
+  </div>
+</section>
+
+<!-- ===== THE TEAM ===== -->
+<section id="the-team" class="section-pad court-surface">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div style="text-align:center;max-width:720px;margin:0 auto 64px">
+      <p class="section-label anim-hidden">The Team</p>
+      <h2 class="section-title anim-hidden">The People Behind <span class="gradient-text">Next Level</span></h2>
+      <p class="section-desc anim-hidden">A team built on experience, passion and a shared commitment to player development at the highest standard.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:960px;margin:0 auto">
+
+      <!-- Team Member 1 -->
+      <div class="glass-card anim-hidden" style="padding:32px 24px;text-align:center;border:1px solid rgba(124,58,237,0.1);border-radius:16px">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--accent));margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;color:var(--dark)">?</div>
+        <h3 style="font-size:20px;font-weight:800;color:white;margin-bottom:4px">Coming Soon</h3>
+        <p style="font-size:13px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px">Founder & Lead Consultant</p>
+        <p style="font-size:14px;color:var(--gray-400);line-height:1.7">The vision and strategy behind Next Level Ball. Defining the path for competitive players with clarity and precision.</p>
+      </div>
+
+      <!-- Team Member 2 - Duglas Cordero -->
+      <div class="glass-card anim-hidden" style="padding:32px 24px;text-align:center;border:1px solid rgba(124,58,237,0.1);border-radius:16px">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#9abf1f);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;color:var(--dark)">D</div>
+        <h3 style="font-size:20px;font-weight:800;color:white;margin-bottom:4px">Duglas Cordero</h3>
+        <p style="font-size:13px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px">Fitness Trainer</p>
+        <p style="font-size:14px;color:var(--gray-400);line-height:1.7">Without a doubt, the best fitness trainer on the tour. One of the most passionate and positive individuals you could ever work with. A team is not complete without him.</p>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="glass-card anim-hidden" style="padding:32px 24px;text-align:center;border:1px solid rgba(124,58,237,0.1);border-radius:16px">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--purple),#a78bfa);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;color:white">?</div>
+        <h3 style="font-size:20px;font-weight:800;color:white;margin-bottom:4px">Coming Soon</h3>
+        <p style="font-size:13px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px">Team Member</p>
+        <p style="font-size:14px;color:var(--gray-400);line-height:1.7">More team members will be announced. Every person on this team shares the same standard — real impact, no shortcuts.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT US (collapsible) ===== -->
+<section id="about-us" class="section-pad" style="padding-top:60px;padding-bottom:60px">
+  <div class="container">
+    <div class="about-toggle anim-hidden" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;display:flex;align-items:center;gap:16px">
+      <h2 style="font-size:clamp(32px,5vw,56px);font-weight:900;color:white;letter-spacing:-1px">About Us</h2>
+      <svg class="about-chevron" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.4s ease"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="about-content" style="max-height:0;overflow:hidden;transition:max-height 0.6s ease,opacity 0.4s ease;opacity:0">
+      <div style="padding-top:24px;max-width:800px">
+        <h3 style="font-size:20px;font-weight:600;color:var(--accent);margin-bottom:12px;letter-spacing:1px">Who We Are</h3>
+        <p class="section-desc" style="line-height:1.85">My role is to cut through the confusion and precisely define the best route for competitive improvement and development of a player. Academies, parents, and coaches often know what they need to fix but not how. My team and I provide that definitive strategy, addressing the mental part, instilling the importance of fitness, and correcting fundamental misconceptions that currently lead to wrong results. Finding the right coaching environment is the most critical investment a player can make. To ensure my clients make informed decisions, here is a breakdown of the essential parameters, common misconceptions, and the structural realities of the modern tennis academy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Next Level Ball" style="height:28px;width:auto;">
+        <div class="footer-logo-text">Next Level <em>Ball</em></div>
+      </div>
+      <p class="footer-tagline">Clarity. Strategy. Progress.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/nextlevelball_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Next Level Ball. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== CUSTOM CURSOR =====
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const outer = document.getElementById('cursorOuter');
+  const inner = document.getElementById('cursorInner');
+  let mx = 0, my = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    inner.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
+    outer.style.transform = 'translate(' + (mx - 20) + 'px,' + (my - 20) + 'px)';
+    outer.style.opacity = '1'; inner.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', function() { outer.style.opacity = '0'; inner.style.opacity = '0'; });
+  document.addEventListener('mousedown', function() { outer.style.width = '32px'; outer.style.height = '32px'; outer.style.transform = 'translate(' + (mx - 16) + 'px,' + (my - 16) + 'px)'; });
+  document.addEventListener('mouseup', function() { outer.style.width = '40px'; outer.style.height = '40px'; outer.style.transform = 'translate(' + (mx - 20) + 'px,' + (my - 20) + 'px)'; });
+  outer.style.opacity = '0'; inner.style.opacity = '0';
+})();
+
+// ===== NAVBAR SCROLL =====
+var navbar = document.getElementById('navbar');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 40) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+}, { passive: true });
+
+// ===== MOBILE MENU =====
+var mobileToggle = document.getElementById('mobileToggle');
+var mobileMenu = document.getElementById('mobileMenu');
+mobileToggle.addEventListener('click', function() {
+  mobileToggle.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+function closeMobile() {
+  mobileToggle.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ===== REVIEW FORM =====
+function previewFile(input) {
+  var preview = document.getElementById('revPreview');
+  var label = document.getElementById('fileLabel');
+  preview.innerHTML = '';
+  if (input.files && input.files[0]) {
+    var file = input.files[0];
+    label.textContent = file.name;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      preview.style.display = 'block';
+      if (file.type.startsWith('image/')) {
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview">';
+      }
+    };
+    reader.readAsDataURL(file);
+  } else {
+    label.textContent = 'Upload a photo (optional)';
+    preview.style.display = 'none';
+  }
+}
+
+function submitReview(e) {
+  // handled by Firebase script below
+  e.preventDefault();
+}
+
+// ===== VIDEO MODAL =====
+var videoData = [
+  {
+    tag: 'Technique',
+    title: 'Serve Analysis',
+    desc: 'Breaking down the serve frame by frame. Understanding the kinetic chain, toss placement, and contact point is what separates a good serve from a weapon. We identify what needs adjusting and build a clear action plan.',
+    src: ''
+  },
+  {
+    tag: 'Strategy',
+    title: 'Match Strategy',
+    desc: 'Winning matches isn\'t about hitting harder — it\'s about making better decisions under pressure. We analyze patterns, tendencies, and tactical opportunities that most players overlook. Play with a plan, not just with hope.',
+    src: ''
+  },
+  {
+    tag: 'Mindset',
+    title: 'Mental Game',
+    desc: 'The mental side of tennis is where matches are truly won or lost. Managing pressure, staying present between points, and building competitive resilience — these are trainable skills, not just talent. We address them head on.',
+    src: ''
+  },
+  {
+    tag: 'Movement',
+    title: 'Footwork Drills',
+    desc: 'Footwork is the foundation of every shot. Without proper movement, even the best technique falls apart. We train split-step timing, recovery patterns, and explosive first steps — because the player who moves better, plays better. Every drill is designed with match situations in mind.',
+    src: 'duglas-cordero.mp4'
+  },
+  {
+    tag: 'Improvement',
+    title: 'Return of Serve',
+    desc: 'The return is the most undercoached shot in tennis. Positioning, split-step timing, and read patterns are what allow you to neutralize even the biggest servers. We break down the mechanics and the decision-making behind an elite return.',
+    src: ''
+  },
+  {
+    tag: 'Tactics',
+    title: 'Court Awareness',
+    desc: 'Where you are on the court determines what shot you should play. Most players hit without thinking about geometry, angles, or recovery. We train the eyes before the hands — because awareness drives every tactical decision.',
+    src: ''
+  }
+];
+
+function openVideoModal(index) {
+  var data = videoData[index];
+  var modal = document.getElementById('videoModal');
+  var video = document.getElementById('modalVideo');
+  document.getElementById('modalTag').textContent = data.tag;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalDesc').textContent = data.desc;
+
+  if (data.src) {
+    video.src = data.src;
+    video.style.display = 'block';
+    video.play();
+  } else {
+    video.src = '';
+    video.style.display = 'none';
+  }
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+  var modal = document.getElementById('videoModal');
+  var video = document.getElementById('modalVideo');
+  video.pause();
+  video.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeVideoModal();
+});
+
+// ===== SCROLL REVEAL =====
+(function() {
+  var animEls = document.querySelectorAll('.anim-hidden, .anim-hidden-left, .anim-hidden-right, .anim-hidden-scale');
+  var visualLines = document.querySelectorAll('.visual-line');
+  var visualArc = document.querySelector('.visual-arc');
+  var visualBall = document.querySelector('.visual-ball');
+  var visualRevealed = false;
+
+  function checkReveal() {
+    var wh = window.innerHeight;
+    animEls.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < wh - 80) el.classList.add('visible');
+    });
+    // Visual section SVG
+    if (!visualRevealed) {
+      var vs = document.getElementById('visual-section');
+      if (vs) {
+        var vr = vs.getBoundingClientRect();
+        if (vr.top < wh - 100) {
+          visualRevealed = true;
+          visualLines.forEach(function(l) { l.classList.add('drawn'); });
+          if (visualArc) visualArc.classList.add('drawn');
+          if (visualBall) visualBall.classList.add('drawn');
+        }
+      }
+    }
+  }
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal();
+})();
+</script>
+
+<!-- Firebase + Cloudinary Integration -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBxpxJKGw-ygqnIGryY0sqUgIOmwmI13AY",
+  authDomain: "next-level-ball.firebaseapp.com",
+  projectId: "next-level-ball",
+  storageBucket: "next-level-ball.firebasestorage.app",
+  messagingSenderId: "423968084012",
+  appId: "1:423968084012:web:62dc912b83f3b3821c4189"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+let currentUser = null;
+
+// Auth state
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+  const authSection = document.getElementById('authSection');
+  const formSection = document.getElementById('reviewFormSection');
+  if (user) {
+    authSection.style.display = 'none';
+    formSection.style.display = 'block';
+    document.getElementById('userAvatar').src = user.photoURL || '';
+    document.getElementById('userName').textContent = user.displayName || 'Player';
+  } else {
+    authSection.style.display = 'block';
+    formSection.style.display = 'none';
+  }
+});
+
+// Google sign in/out
+window.googleSignIn = async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    if (err.code !== 'auth/popup-closed-by-user') {
+      alert('Error signing in. Please try again.');
+    }
+  }
+};
+
+window.googleSignOut = async () => {
+  await signOut(auth);
+};
+
+// Upload image to Cloudinary
+async function uploadToCloudinary(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'next_level_ball');
+  formData.append('folder', 'nlb-reviews');
+  const res = await fetch('https://api.cloudinary.com/v1_1/dmb6dulwo/image/upload', {
+    method: 'POST',
+    body: formData
+  });
+  const data = await res.json();
+  return data.secure_url;
+}
+
+// Submit review to Firestore
+window.submitReview = async (e) => {
+  e.preventDefault();
+  if (!currentUser) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  try {
+    const role = document.getElementById('revRole').value || 'Player';
+    const text = document.getElementById('revText').value;
+    const fileInput = document.getElementById('revFile');
+    let imageUrl = '';
+
+    if (fileInput.files && fileInput.files[0]) {
+      btn.textContent = 'Uploading image...';
+      imageUrl = await uploadToCloudinary(fileInput.files[0]);
+    }
+
+    await addDoc(collection(db, 'reviews'), {
+      uid: currentUser.uid,
+      name: currentUser.displayName || 'Anonymous',
+      avatar: currentUser.photoURL || '',
+      role: role,
+      text: text,
+      imageUrl: imageUrl,
+      createdAt: serverTimestamp()
+    });
+
+    document.getElementById('reviewForm').reset();
+    document.getElementById('revPreview').style.display = 'none';
+    document.getElementById('revPreview').innerHTML = '';
+    document.getElementById('fileLabel').textContent = 'Upload a photo (optional)';
+
+    const success = document.getElementById('reviewSuccess');
+    success.style.display = 'block';
+    setTimeout(() => { success.style.display = 'none'; }, 3000);
+
+    await loadReviews();
+  } catch (err) {
+    alert('Error submitting review. Please try again.');
+    console.error(err);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Submit Review';
+};
+
+// Load reviews from Firestore
+async function loadReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  // Keep placeholder reviews, remove firebase ones
+  grid.querySelectorAll('.firebase-review').forEach(el => el.remove());
+
+  try {
+    const q = query(collection(db, 'reviews'), orderBy('createdAt', 'desc'));
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach((docSnap) => {
+      const r = docSnap.data();
+      const card = document.createElement('div');
+      card.className = 'review-card glass-card visible firebase-review';
+      card.dataset.id = docSnap.id;
+      card.dataset.uid = r.uid;
+
+      const initial = r.name ? r.name.charAt(0).toUpperCase() : '?';
+      const avatarHtml = r.avatar
+        ? '<img src="' + r.avatar + '" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--purple)">'
+        : '<div class="review-avatar">' + initial + '</div>';
+      const mediaHtml = r.imageUrl
+        ? '<div class="review-media"><img src="' + r.imageUrl + '" alt="Player photo"></div>'
+        : '';
+      const deleteHtml = (currentUser && currentUser.uid === r.uid)
+        ? '<button onclick="deleteReview(\'' + docSnap.id + '\')" style="position:absolute;top:12px;right:12px;background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:18px;padding:4px" title="Delete">&times;</button>'
+        : '';
+
+      card.innerHTML = '<div style="position:relative">' + deleteHtml + '<div class="review-card-header">' + avatarHtml + '<div><div class="review-name">' + (r.name || 'Anonymous') + '</div><div class="review-role">' + (r.role || 'Player') + '</div></div></div><p class="review-text">"' + r.text + '"</p>' + mediaHtml + '</div>';
+      grid.insertBefore(card, grid.firstChild);
+    });
+  } catch (err) {
+    console.error('Error loading reviews:', err);
+  }
+}
+
+// Delete own review
+window.deleteReview = async (reviewId) => {
+  if (!confirm('Delete this review?')) return;
+  try {
+    await deleteDoc(doc(db, 'reviews', reviewId));
+    await loadReviews();
+  } catch (err) {
+    alert('Error deleting review.');
+    console.error(err);
+  }
+};
+
+// Load reviews on page load
+loadReviews();
+</script>
+</body>
+</html>
