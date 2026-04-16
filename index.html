@@ -456,7 +456,7 @@
       position: relative; aspect-ratio: 9/16; border-radius: 12px; overflow: hidden;
       cursor: pointer; text-decoration: none; display: block;
     }
-    @media (min-width: 640px) { .reel-card { aspect-ratio: 4/5; } }
+    @media (min-width: 640px) { .reel-card { aspect-ratio: 9/16; } }
     .reel-bg { position: absolute; inset: 0; }
     .reel-court { position: absolute; inset: 0; opacity: 0.1; }
     .reel-overlay {
@@ -962,37 +962,32 @@
     </div>
     <div class="reel-grid">
       <div class="reel-card anim-hidden-scale" onclick="openVideoModal(0)">
-        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-bg" style="background:url('thumb-serve.png') center/cover no-repeat"></div>
         <div class="reel-hover-bg"></div>
-        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
         <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
         <div class="reel-content"><div class="reel-tag">Technique</div><div class="reel-title">Serve Analysis</div></div>
       </div>
       <div class="reel-card anim-hidden-scale" style="transition-delay:0.08s" onclick="openVideoModal(1)">
-        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(196,247,42,0.2), var(--dark))"></div>
+        <div class="reel-bg" style="background:url('thumb-strategy.png') center/cover no-repeat"></div>
         <div class="reel-hover-bg"></div>
-        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
         <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
         <div class="reel-content"><div class="reel-tag">Strategy</div><div class="reel-title">Match Strategy</div></div>
       </div>
       <div class="reel-card anim-hidden-scale" style="transition-delay:0.16s" onclick="openVideoModal(2)">
-        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-bg" style="background:url('thumb-mental.png') center/cover no-repeat"></div>
         <div class="reel-hover-bg"></div>
-        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
         <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
         <div class="reel-content"><div class="reel-tag">Mindset</div><div class="reel-title">Mental Game</div></div>
       </div>
       <div class="reel-card anim-hidden-scale" style="transition-delay:0.24s" onclick="openVideoModal(3)">
-        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(196,247,42,0.2), var(--dark))"></div>
+        <div class="reel-bg" style="background:url('thumb-footwork.png') center/cover no-repeat"></div>
         <div class="reel-hover-bg"></div>
-        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
         <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
         <div class="reel-content"><div class="reel-tag">Movement</div><div class="reel-title">Footwork Drills</div></div>
       </div>
       <div class="reel-card anim-hidden-scale" style="transition-delay:0.32s" onclick="openVideoModal(4)">
-        <div class="reel-bg" style="background:linear-gradient(to bottom, rgba(124,58,237,0.3), var(--dark))"></div>
+        <div class="reel-bg" style="background:url('thumb-return.png') center/cover no-repeat"></div>
         <div class="reel-hover-bg"></div>
-        <svg class="reel-court" width="100%" height="100%" viewBox="0 0 200 300"><line x1="20" y1="0" x2="20" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="180" y1="0" x2="180" y2="300" stroke="#7c3aed" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#c4f72a" stroke-width="0.5"/><line x1="100" y1="100" x2="100" y2="200" stroke="#7c3aed" stroke-width="0.3"/></svg>
         <div class="reel-overlay"><div class="reel-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
         <div class="reel-content"><div class="reel-tag">Improvement</div><div class="reel-title">Return of Serve</div></div>
       </div>
