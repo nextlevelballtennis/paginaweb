@@ -579,9 +579,14 @@
 
     /* ===== SUCCEEDING PLAYERS ===== */
     .sp-reviews-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
-    .reviews-grid { display: grid; gap: 24px; margin-bottom: 48px; }
+    .reviews-grid { display: grid; gap: 24px; margin-bottom: 24px; }
     @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+    .reviews-pagination { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .reviews-pagination button { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); color: white; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 14px; font-family: inherit; transition: all 0.3s; }
+    .reviews-pagination button:hover { background: rgba(124,58,237,0.3); }
+    .reviews-pagination button:disabled { opacity: 0.3; cursor: default; }
+    .reviews-pagination span { color: var(--gray-400); font-size: 14px; }
 
     .review-card {
       border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: all 0.5s;
@@ -595,8 +600,8 @@
     .review-name { font-size: 15px; font-weight: 700; color: white; }
     .review-role { font-size: 12px; color: var(--gray-400); }
     .review-text { font-size: 14px; color: var(--gray-300); line-height: 1.7; font-style: italic; }
-    .review-media { margin-top: 16px; border-radius: 10px; overflow: hidden; max-height: 200px; }
-    .review-media img, .review-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .review-media { margin-top: 16px; border-radius: 10px; overflow: hidden; }
+    .review-media img, .review-media video { width: 100%; height: auto; object-fit: contain; display: block; }
 
     /* Review form */
     .review-form-wrap {
@@ -1032,29 +1037,11 @@
     </div>
 
     <!-- Reviews grid -->
-    <div class="reviews-grid" id="reviewsGrid">
-      <!-- Placeholder reviews -->
-      <div class="review-card glass-card anim-hidden">
-        <div class="review-card-header">
-          <div class="review-avatar">M</div>
-          <div><div class="review-name">Marco T.</div><div class="review-role">Competitive Player</div></div>
-        </div>
-        <p class="review-text">"The clarity I got from NLB changed my approach completely. I stopped wasting time on things that didn't matter and started seeing real results in tournaments."</p>
-      </div>
-      <div class="review-card glass-card anim-hidden">
-        <div class="review-card-header">
-          <div class="review-avatar">S</div>
-          <div><div class="review-name">Sofia R.</div><div class="review-role">Junior Player</div></div>
-        </div>
-        <p class="review-text">"My parents and I were lost trying to find the right academy. NLB gave us the criteria to make the best decision. It was a game changer."</p>
-      </div>
-      <div class="review-card glass-card anim-hidden">
-        <div class="review-card-header">
-          <div class="review-avatar">D</div>
-          <div><div class="review-name">Daniel K.</div><div class="review-role">Amateur Competitor</div></div>
-        </div>
-        <p class="review-text">"I thought I needed to fix my technique. Turns out I needed a better tactical plan. NLB helped me understand that and my results improved fast."</p>
-      </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+    <div class="reviews-pagination" id="reviewsPagination" style="display:none">
+      <button id="reviewsPrev" onclick="changeReviewPage(-1)">&larr; Prev</button>
+      <span id="reviewsPageInfo"></span>
+      <button id="reviewsNext" onclick="changeReviewPage(1)">Next &rarr;</button>
     </div>
 
     <!-- Auth + Review form -->
@@ -1488,11 +1475,72 @@ window.submitReview = async (e) => {
   btn.textContent = 'Submit Review';
 };
 
+// Pagination state
+var allReviews = [];
+var reviewPage = 0;
+var REVIEWS_PER_PAGE = 6;
+
+// Placeholder reviews
+var placeholderReviews = [
+  { name: 'Marco T.', role: 'Competitive Player', text: 'The clarity I got from NLB changed my approach completely. I stopped wasting time on things that didn\'t matter and started seeing real results in tournaments.', isPlaceholder: true },
+  { name: 'Sofia R.', role: 'Junior Player', text: 'My parents and I were lost trying to find the right academy. NLB gave us the criteria to make the best decision. It was a game changer.', isPlaceholder: true },
+  { name: 'Daniel K.', role: 'Amateur Competitor', text: 'I thought I needed to fix my technique. Turns out I needed a better tactical plan. NLB helped me understand that and my results improved fast.', isPlaceholder: true }
+];
+
+function renderReviewPage() {
+  var grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = '';
+  var start = reviewPage * REVIEWS_PER_PAGE;
+  var end = Math.min(start + REVIEWS_PER_PAGE, allReviews.length);
+  var pageItems = allReviews.slice(start, end);
+
+  pageItems.forEach(function(r) {
+    var card = document.createElement('div');
+    card.className = 'review-card glass-card visible';
+    if (r.docId) {
+      card.classList.add('firebase-review');
+      card.dataset.id = r.docId;
+      card.dataset.uid = r.uid;
+    }
+
+    var initial = r.name ? r.name.charAt(0).toUpperCase() : '?';
+    var avatarHtml = r.avatar
+      ? '<img src="' + r.avatar + '" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--purple)">'
+      : '<div class="review-avatar">' + initial + '</div>';
+    var mediaHtml = r.imageUrl
+      ? '<div class="review-media"><img src="' + r.imageUrl + '" alt="Player photo"></div>'
+      : '';
+    var deleteHtml = (!r.isPlaceholder && currentUser && currentUser.uid === r.uid)
+      ? '<button onclick="deleteReview(\'' + r.docId + '\')" style="position:absolute;top:12px;right:12px;background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:18px;padding:4px" title="Delete">&times;</button>'
+      : '';
+
+    card.innerHTML = '<div style="position:relative">' + deleteHtml + '<div class="review-card-header">' + avatarHtml + '<div><div class="review-name">' + (r.name || 'Anonymous') + '</div><div class="review-role">' + (r.role || 'Player') + '</div></div></div><p class="review-text">"' + r.text + '"</p>' + mediaHtml + '</div>';
+    grid.appendChild(card);
+  });
+
+  // Update pagination controls
+  var totalPages = Math.ceil(allReviews.length / REVIEWS_PER_PAGE);
+  var pagination = document.getElementById('reviewsPagination');
+  if (totalPages > 1) {
+    pagination.style.display = 'flex';
+    document.getElementById('reviewsPageInfo').textContent = (reviewPage + 1) + ' / ' + totalPages;
+    document.getElementById('reviewsPrev').disabled = reviewPage === 0;
+    document.getElementById('reviewsNext').disabled = reviewPage >= totalPages - 1;
+  } else {
+    pagination.style.display = 'none';
+  }
+}
+
+window.changeReviewPage = function(dir) {
+  var totalPages = Math.ceil(allReviews.length / REVIEWS_PER_PAGE);
+  reviewPage = Math.max(0, Math.min(reviewPage + dir, totalPages - 1));
+  renderReviewPage();
+  document.getElementById('reviewsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 // Load reviews from Firestore
 async function loadReviews() {
-  const grid = document.getElementById('reviewsGrid');
-  // Keep placeholder reviews, remove firebase ones
-  grid.querySelectorAll('.firebase-review').forEach(el => el.remove());
+  allReviews = [];
 
   try {
     const q = query(collection(db, 'reviews'), orderBy('createdAt', 'desc'));
@@ -1500,28 +1548,23 @@ async function loadReviews() {
 
     snapshot.forEach((docSnap) => {
       const r = docSnap.data();
-      const card = document.createElement('div');
-      card.className = 'review-card glass-card visible firebase-review';
-      card.dataset.id = docSnap.id;
-      card.dataset.uid = r.uid;
-
-      const initial = r.name ? r.name.charAt(0).toUpperCase() : '?';
-      const avatarHtml = r.avatar
-        ? '<img src="' + r.avatar + '" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--purple)">'
-        : '<div class="review-avatar">' + initial + '</div>';
-      const mediaHtml = r.imageUrl
-        ? '<div class="review-media"><img src="' + r.imageUrl + '" alt="Player photo"></div>'
-        : '';
-      const deleteHtml = (currentUser && currentUser.uid === r.uid)
-        ? '<button onclick="deleteReview(\'' + docSnap.id + '\')" style="position:absolute;top:12px;right:12px;background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:18px;padding:4px" title="Delete">&times;</button>'
-        : '';
-
-      card.innerHTML = '<div style="position:relative">' + deleteHtml + '<div class="review-card-header">' + avatarHtml + '<div><div class="review-name">' + (r.name || 'Anonymous') + '</div><div class="review-role">' + (r.role || 'Player') + '</div></div></div><p class="review-text">"' + r.text + '"</p>' + mediaHtml + '</div>';
-      grid.insertBefore(card, grid.firstChild);
+      allReviews.push({
+        name: r.name,
+        role: r.role,
+        text: r.text,
+        avatar: r.avatar,
+        imageUrl: r.imageUrl,
+        uid: r.uid,
+        docId: docSnap.id
+      });
     });
   } catch (err) {
     console.error('Error loading reviews:', err);
   }
+
+  // Add placeholders at the end
+  allReviews = allReviews.concat(placeholderReviews);
+  renderReviewPage();
 }
 
 // Delete own review
