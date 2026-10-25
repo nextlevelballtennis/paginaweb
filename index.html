@@ -447,6 +447,45 @@
     .why-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 8px; padding-left: 16px; }
     .why-card p { font-size: 15px; color: var(--gray-400); line-height: 1.7; padding-left: 16px; }
 
+    /* ===== LIVE LESSONS ONLINE ===== */
+    .live-lessons-section { position: relative; }
+    .live-lessons-wrap { max-width: 980px; margin: 0 auto; text-align: center; }
+    .live-lessons-title {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      background: linear-gradient(120deg, #7c3aed 0%, #c4f72a 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    .live-lessons-desc {
+      font-size: 17px; color: var(--gray-400); max-width: 640px;
+      margin: 0 auto 48px; line-height: 1.7;
+    }
+    .live-lessons-video-card {
+      position: relative; width: 100%; max-width: 820px; margin: 0 auto;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(124,58,237,0.25), 0 0 120px rgba(196,247,42,0.08);
+    }
+    .live-lessons-video-card::before {
+      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%);
+    }
+    .live-lessons-video {
+      width: 100%; display: block;
+    }
+    .live-lessons-glow {
+      position: absolute; inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(124,58,237,0.18) 0%, transparent 60%);
+      z-index: -1; pointer-events: none;
+    }
+
     /* ===== SOCIAL PROOF ===== */
     .sp-header { text-align: center; max-width: 720px; margin: 0 auto 64px; }
     .reel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 64px; }
@@ -1026,6 +1065,24 @@
   </div>
 </section>
 
+<!-- ===== LIVE LESSONS ONLINE ===== -->
+<section id="live-lessons" class="section-pad live-lessons-section">
+  <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
+  <div class="container">
+    <div class="live-lessons-wrap">
+      <p class="section-label anim-hidden">Online Coaching</p>
+      <h2 class="live-lessons-title anim-hidden">While Lessons Online</h2>
+      <p class="live-lessons-desc anim-hidden">Live sessions that bring the court to you. Focused guidance, real-time feedback, and a plan that moves you forward.</p>
+      <div class="live-lessons-video-card anim-hidden">
+        <div class="live-lessons-glow"></div>
+        <video class="live-lessons-video" autoplay muted loop playsinline>
+          <source src="live-lessons.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== SUCCEEDING PLAYERS ===== -->
 <section id="succeeding-players" class="section-pad court-surface">
   <div class="court-divider" style="position:absolute;top:0;left:0;right:0"></div>
@@ -1481,11 +1538,7 @@ var reviewPage = 0;
 var REVIEWS_PER_PAGE = 6;
 
 // Placeholder reviews
-var placeholderReviews = [
-  { name: 'Marco T.', role: 'Competitive Player', text: 'The clarity I got from NLB changed my approach completely. I stopped wasting time on things that didn\'t matter and started seeing real results in tournaments.', isPlaceholder: true },
-  { name: 'Sofia R.', role: 'Junior Player', text: 'My parents and I were lost trying to find the right academy. NLB gave us the criteria to make the best decision. It was a game changer.', isPlaceholder: true },
-  { name: 'Daniel K.', role: 'Amateur Competitor', text: 'I thought I needed to fix my technique. Turns out I needed a better tactical plan. NLB helped me understand that and my results improved fast.', isPlaceholder: true }
-];
+var placeholderReviews = [];
 
 function renderReviewPage() {
   var grid = document.getElementById('reviewsGrid');
